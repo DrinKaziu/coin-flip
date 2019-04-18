@@ -18,12 +18,14 @@ class CoinFlip extends Component {
 
   flipCoin = () => {
     let randFace = this.props.faces[Math.floor(Math.random() * 2)];
-    this.setState({
-      face: randFace,
-      totalCount: this.state.totalCount + 1,
-      tailsCount: randFace === 'tails' ? this.state.tailsCount + 1 : this.state.tailsCount,
-      headsCount: randFace === 'heads' ? this.state.headsCount + 1 : this.state.headsCount
-    });
+    this.setState(prevState => {
+      return {
+        face: randFace,
+        totalCount: prevState.totalCount + 1,
+        tailsCount: randFace === 'tails' ? prevState.tailsCount + 1 : prevState.tailsCount,
+        headsCount: randFace === 'heads' ? prevState.headsCount + 1 : prevState.headsCount
+      }
+    })
   }
 
   render () {
